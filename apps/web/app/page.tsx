@@ -1,13 +1,12 @@
-import { Button } from "@workspace/ui/components/button";
-import { add } from "@workspace/internal-package/add";
+"use client"
+import { api } from "@workspace/backend/_generated/api"
+import { useQuery } from "convex/react"
 export default function Page() {
+  const users = useQuery(api.users.getmany)
   return (
-    <div className="flex items-center justify-center min-h-svh">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl font-bold">Hello World apps/web</h1>
-        <Button size="sm">Button</Button>
-      </div>
-      <div>adding 2 and 3 : {add(2, 3)}</div>
+    <div className="flex items-center justify-center h-screen">
+      <p> apps/web </p>
+      {JSON.stringify(users)}
     </div>
   );
 }
