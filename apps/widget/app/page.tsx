@@ -9,6 +9,7 @@ export default function Page() {
       <div className="flex items-center justify-center">
         {JSON.stringify(users)}
       </div>
+      
     </div>
   );
 }
