@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Pricing } from "@/components/pricing";
 import { ComparisonShowcase } from "@/components/comparison";
 import { FAQ } from "@/components/faq";
+import { Testimonials } from "@/components/ui/Testimonials";
 
 export default function Page() {
   const prefersReducedMotion = useReducedMotion();
@@ -355,6 +356,20 @@ export default function Page() {
         </motion.div>
       </section>
       <ComparisonShowcase />
+      
+      {/* Testimonials */}
+      <section className="relative z-10 border-t border-white/60">
+        <motion.div
+          variants={parentEnter}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20"
+        >
+          <Testimonials />
+        </motion.div>
+      </section>
+      
       <Pricing parentEnter={parentEnter} childEnter={childEnter} />
       <FAQ parentEnter={parentEnter} childEnter={childEnter} />
 
