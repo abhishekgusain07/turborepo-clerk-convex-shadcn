@@ -1,54 +1,42 @@
 "use client";
 
-import { motion } from "framer-motion";
+import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
-type FAQItem = {
+interface FaqItem {
   question: string;
   answer: string;
-  category?: "technical" | "pricing" | "support" | "general";
-};
+}
 
-const faqs: FAQItem[] = [
+const faqContent: FaqItem[] = [
   {
-    question: "What's included in the SaaS Forge starter?",
-    answer: "SaaS Forge includes a complete Next.js 15 setup with App Router, Convex for real-time data and backend functions, Clerk for authentication (magic links + OAuth), Sentry for error tracking, TypeScript configuration, Tailwind CSS, deployment configurations, and example patterns for RBAC, API routes, and more.",
-    category: "general",
+    question: "Who is SaaS Forge for?",
+    answer: "SaaS Forge is for developers, startup founders, and teams who want to launch production-ready SaaS applications quickly. It's perfect for those who want a battle-tested tech stack with Next.js, Convex, Clerk, and Sentry pre-configured and integrated, saving weeks of setup time.",
   },
   {
-    question: "Is this production-ready?",
-    answer: "Absolutely! SaaS Forge is built with production-grade patterns, proper error handling, observability, security best practices, and deployment configurations. Many companies use this exact stack to power their SaaS applications at scale.",
-    category: "technical",
+    question: "How much does it cost?",
+    answer: "SaaS Forge starter is completely free and open source under the MIT license. You only pay for the individual services you choose to use (like Convex, Clerk, or Sentry). Each service has generous free tiers, so you can start building without any upfront costs and scale as you grow.",
   },
   {
-    question: "Can I customize and modify the code?",
-    answer: "Yes, completely! SaaS Forge is open source (MIT licensed) and designed to be your foundation, not a restriction. Modify any component, swap out services, change styling, or extend functionality as needed. It's your codebase.",
-    category: "general",
+    question: "Which platforms does SaaS Forge support?",
+    answer: "SaaS Forge is built with Next.js and supports deployment on Vercel, Netlify, AWS, Google Cloud, and any platform that supports Node.js applications. It works on all modern browsers and is fully responsive for mobile, tablet, and desktop experiences.",
   },
   {
-    question: "What's the difference between this and other Next.js starters?",
-    answer: "Most starters give you basic setup. SaaS Forge gives you a complete, opinionated stack that actually works together: real-time data with Convex, production auth with Clerk, error tracking with Sentry, and deployment-ready configs. It's not just a template—it's a complete foundation.",
-    category: "technical",
+    question: "What makes SaaS Forge different from other Next.js starters?",
+    answer: "Unlike basic templates, SaaS Forge provides a complete, production-ready ecosystem. It includes real-time data with Convex, robust authentication with Clerk, error tracking with Sentry, and proper patterns for RBAC, API routes, and deployment. Everything is pre-integrated and tested together.",
   },
   {
-    question: "Do I need to know all these technologies?",
-    answer: "Not at all! The starter comes with clear documentation, example patterns, and sensible defaults. You can start building your features immediately and learn the stack as you go. Each technology is chosen to be developer-friendly.",
-    category: "general",
+    question: "Can I customize and extend SaaS Forge?",
+    answer: "Absolutely! SaaS Forge is open source and designed to be your foundation, not a restriction. Modify components, swap out services, customize styling, add features, or restructure as needed. It's your codebase to own and evolve.",
   },
   {
-    question: "What kind of support is provided?",
-    answer: "The starter includes comprehensive documentation, code comments, and example implementations. For the open source version, support is community-based. We also offer priority support and consultation for teams who need additional help.",
-    category: "support",
+    question: "What kind of support is available?",
+    answer: "SaaS Forge includes comprehensive documentation, code comments, and example implementations. The open source community provides support through GitHub discussions. We also offer consulting and priority support for teams who need hands-on guidance.",
   },
   {
-    question: "Can this handle enterprise-scale applications?",
-    answer: "Yes! The technologies in SaaS Forge (Next.js, Convex, Clerk, Sentry) are designed for scale. Convex handles millions of operations, Clerk serves billions of authentications, and Next.js powers some of the largest websites. The patterns included are production-tested.",
-    category: "technical",
-  },
-  {
-    question: "How often is SaaS Forge updated?",
-    answer: "We regularly update SaaS Forge to stay current with the latest versions of Next.js, Convex, Clerk, and other dependencies. Updates include new features, security patches, and performance improvements.",
-    category: "support",
+    question: "Is SaaS Forge production-ready?",
+    answer: "Yes! SaaS Forge is built with production-grade patterns, proper error handling, observability, security best practices, and deployment configurations. The stack (Next.js, Convex, Clerk, Sentry) powers many successful SaaS applications at scale.",
   },
 ];
 
@@ -59,7 +47,11 @@ export function FAQ({
   parentEnter: any;
   childEnter: any;
 }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <section
@@ -96,89 +88,78 @@ export function FAQ({
           </p>
         </motion.div>
 
-        {/* FAQ Cards */}
+        {/* FAQ Items */}
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {faqContent.map((item, index) => (
             <motion.div
               key={index}
               variants={childEnter}
-              whileHover={{ y: -2 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/70 bg-gradient-to-br from-white/60 to-white/80 shadow-lg backdrop-blur-xl"
-            >
-              {/* Category indicator */}
-              {faq.category && (
-                <div className="absolute right-4 top-4">
-                  <span className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ring-1 ring-inset ${
-                    faq.category === "technical" 
-                      ? "bg-blue-50 text-blue-700 ring-blue-600/20"
-                      : faq.category === "pricing"
-                      ? "bg-emerald-50 text-emerald-700 ring-emerald-600/20"
-                      : faq.category === "support"
-                      ? "bg-purple-50 text-purple-700 ring-purple-600/20"
-                      : "bg-gray-50 text-gray-700 ring-gray-600/20"
-                  }`}>
-                    {faq.category}
-                  </span>
-                </div>
+              className={clsx(
+                "rounded-2xl overflow-hidden border border-white/70 backdrop-blur-xl shadow-lg",
+                openIndex === index
+                  ? "bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 text-white"
+                  : "bg-gradient-to-br from-white/60 to-white/80 hover:from-white/70 hover:to-white/90 text-gray-900",
+                "transition-all duration-300"
               )}
-
-              {/* Question Button */}
+            >
               <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-6 text-left focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white/50"
-                aria-expanded={openIndex === index}
+                className="flex justify-between items-center px-6 py-6 w-full text-left focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white/50"
+                onClick={() => toggleFaq(index)}
               >
-                <div className="flex items-center justify-between pr-12">
-                  <h3 className="text-lg font-semibold text-gray-800 group-hover:text-gray-900">
-                    {faq.question}
-                  </h3>
-                  <motion.div
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100/50 text-emerald-600 transition-colors group-hover:bg-emerald-200/50"
-                  >
+                <p
+                  className={clsx(
+                    "text-lg font-semibold",
+                    openIndex === index ? "text-white" : "text-gray-800"
+                  )}
+                >
+                  {item.question}
+                </p>
+                <div className={clsx(
+                  "flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-colors",
+                  openIndex === index ? "bg-white/20" : "bg-emerald-100/50"
+                )}>
+                  {openIndex === index ? (
                     <svg
-                      className="h-4 w-4"
+                      className="w-4 h-4 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                       strokeWidth={2}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19 9l-7 7-7-7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
                     </svg>
-                  </motion.div>
+                  ) : (
+                    <svg
+                      className="w-4 h-4 text-emerald-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                  )}
                 </div>
               </button>
 
-              {/* Answer */}
-              <motion.div
-                initial={false}
-                animate={{
-                  height: openIndex === index ? "auto" : 0,
-                  opacity: openIndex === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="overflow-hidden"
-              >
-                <div className="px-6 pb-6">
-                  <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-4" />
-                  <p className="text-gray-600 leading-relaxed pr-12">
-                    {faq.answer}
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Subtle gradient accent */}
-              <div
-                className={`pointer-events-none absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent transition-opacity duration-300 ${
-                  openIndex === index ? "opacity-100" : "opacity-0"
-                }`}
-              />
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-6">
+                      <div className="h-px bg-white/20 mb-4" />
+                      <p className="text-white/90 leading-relaxed">
+                        {item.answer}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>
@@ -193,29 +174,25 @@ export function FAQ({
               Still have questions?
             </h3>
             <p className="mt-2 text-gray-600">
-              Can't find the answer you're looking for? Our team is here to help.
+              Can't find the answer you're looking for? Our community is here to help.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <motion.a
                 whileHover={{ y: -1, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                href="mailto:support@saasforge.dev"
+                href="https://github.com/saasforge/saasforge/discussions"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl"
               >
                 <svg
                   className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
+                  <path fillRule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clipRule="evenodd" />
                 </svg>
-                Contact support
+                Join discussions
               </motion.a>
               <motion.a
                 whileHover={{ y: -1 }}
