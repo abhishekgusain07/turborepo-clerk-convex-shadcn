@@ -1,8 +1,8 @@
 "use client";
 import { api } from "@workspace/backend/_generated/api";
 import { useMutation, useQuery } from "convex/react";
-import { UserButton } from "@clerk/nextjs";
-
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import { Button } from "@workspace/ui/components/button";
 export default function Page() {
   const users = useQuery(api.users.getmany);
   const addUser = useMutation(api.users.addUser);
@@ -12,8 +12,9 @@ export default function Page() {
       <div className="flex items-center  flex-col justify-center h-screen">
         <p> apps/web </p>
         {JSON.stringify(users)}
-        <button onClick={() => addUser()}>addUser</button>
-        <button onClick={() => removeUsers()}>removeUsers</button>
+        <OrganizationSwitcher hidePersonal={true} />
+        <Button onClick={() => addUser()}>addUser</Button>
+        <Button onClick={() => removeUsers()}>removeUsers</Button>
         <div className="mt-3">
           <UserButton />
         </div>
