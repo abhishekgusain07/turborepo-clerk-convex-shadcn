@@ -1,14 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@workspace/ui/globals.css";
 import { Providers } from "@/components/providers";
 
-const fontSans = Geist({
+const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-const fontMono = Geist_Mono({
+const fontMono = Inter({
   subsets: ["latin"],
   variable: "--font-mono",
 });

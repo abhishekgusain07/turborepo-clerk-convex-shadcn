@@ -9,6 +9,9 @@ import Clerk from "@/logos/clerk";
 import Sentry from "@/logos/sentry";
 import { Meteors } from "@/components/meteor";
 import Link from "next/link";
+import { Pricing } from "@/components/pricing";
+import { ComparisonShowcase } from "@/components/comparison";
+import { FAQ } from "@/components/faq";
 
 export default function Page() {
   const prefersReducedMotion = useReducedMotion();
@@ -124,7 +127,7 @@ export default function Page() {
               <motion.a
                 whileHover={{ y: -2, scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
-                href="#get-started"
+                href="/sign-in"
                 className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl"
               >
                 Create my SaaS
@@ -351,6 +354,9 @@ export default function Page() {
           </div>
         </motion.div>
       </section>
+      <ComparisonShowcase />
+      <Pricing parentEnter={parentEnter} childEnter={childEnter} />
+      <FAQ parentEnter={parentEnter} childEnter={childEnter} />
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-white/60">
