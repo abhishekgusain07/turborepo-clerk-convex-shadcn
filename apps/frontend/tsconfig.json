@@ -4,8 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@workspace/ui/*": ["@workspace/packages/ui/src/*"],
-      "@workspace/backend/*": ["@workspace/packages/backend/convex/*"]
+      "@workspace/ui/*": ["../../packages/ui/src/*"],
+      "@workspace/backend/*": ["../../packages/backend/convex/*"]
     },
     "plugins": [
       {
