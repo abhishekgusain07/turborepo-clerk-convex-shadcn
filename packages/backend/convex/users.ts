@@ -7,6 +7,10 @@ export const getmany = query({
     if (identity == null) {
       throw new Error("unauthorized");
     }
+    const orgId = identity.orgId as string;
+    if(!orgId) {
+      throw new Error("Missing orgId");
+    }
     const users = await ctx.db.query("users").collect();
     return users;
   },
@@ -16,6 +20,13 @@ export const addUser = mutation({
   args: {},
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
+    if (identity == null) {
+      throw new Error("unauthorized");
+    }
+    const orgId = identity.orgId as string;
+    if(!orgId) {
+      throw new Error("Missing orgId");
+    }
     if (identity == null) {
       throw new Error("unauthorized");
     }
@@ -31,6 +42,10 @@ export const removeUsers = mutation({
     const identity = await ctx.auth.getUserIdentity();
     if (identity == null) {
       throw new Error("unauthorized");
+    }
+    const orgId = identity.orgId as string;
+    if(!orgId) {
+      throw new Error("Missing orgId");
     }
     const allUsers = await ctx.db.query("users").collect();
     allUsers.map(async (user) => {
