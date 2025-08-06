@@ -12,10 +12,7 @@ type Variant =
   | "blue"
   | "pink";
 
-const palette: Record<
-  Variant,
-  { from: string; to: string; text: string }
-> = {
+const palette: Record<Variant, { from: string; to: string; text: string }> = {
   neutral: {
     from: "from-neutral-200/90",
     to: "to-neutral-400/90",
@@ -67,9 +64,7 @@ export function TechBadge({
       className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${colors.from} ${colors.to} px-3 py-1.5 ${colors.text}`}
       role="img"
     >
-      <div className="h-4 w-4 [&>svg]:h-full [&>svg]:w-full">
-        {logo}
-      </div>
+      <div className="h-4 w-4 [&>svg]:h-full [&>svg]:w-full">{logo}</div>
     </motion.span>
   );
 }

@@ -8,7 +8,7 @@ export const getmany = query({
       throw new Error("unauthorized");
     }
     const orgId = identity.orgId as string;
-    if(!orgId) {
+    if (!orgId) {
       throw new Error("Missing orgId");
     }
     const users = await ctx.db.query("users").collect();
@@ -24,7 +24,7 @@ export const addUser = mutation({
       throw new Error("unauthorized");
     }
     const orgId = identity.orgId as string;
-    if(!orgId) {
+    if (!orgId) {
       throw new Error("Missing orgId");
     }
     if (identity == null) {
@@ -44,7 +44,7 @@ export const removeUsers = mutation({
       throw new Error("unauthorized");
     }
     const orgId = identity.orgId as string;
-    if(!orgId) {
+    if (!orgId) {
       throw new Error("Missing orgId");
     }
     const allUsers = await ctx.db.query("users").collect();

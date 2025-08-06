@@ -2,13 +2,13 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { LogoMark } from "@/components/LogoMark";
+import { PointerHighlight } from "@workspace/ui/components/ui/pointer-highlight";
 import Nextjs from "@/logos/nextjs";
 import Convex from "@/logos/convex";
 import Clerk from "@/logos/clerk";
 import Sentry from "@/logos/sentry";
-import Tailwind from "@/logos/tailwind";
-import Typescript from "@/logos/typescript";
-import FramerMotion from "@/logos/framer-motion";
+import { Meteors } from "@/components/meteor";
+import Link from "next/link";
 
 export default function Page() {
   const prefersReducedMotion = useReducedMotion();
@@ -77,24 +77,12 @@ export default function Page() {
           >
             Features
           </a>
-          <a
-            href="#problem"
-            className="text-sm text-gray-600 transition-colors hover:text-gray-800"
-          >
-            Why
-          </a>
-          <a
-            href="#faq"
-            className="text-sm text-gray-600 transition-colors hover:text-gray-800"
-          >
-            FAQ
-          </a>
-          <a
-            href="#get-started"
+          <Link
+            href="/sign-in"
             className="rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-8px_rgba(56,189,248,0.45)] transition hover:brightness-105"
           >
             Get started
-          </a>
+          </Link>
         </motion.nav>
       </motion.header>
 
@@ -106,13 +94,25 @@ export default function Page() {
           animate="show"
           className="mx-auto max-w-6xl px-6 pb-10 pt-8 sm:px-8 sm:pb-16 md:pt-14"
         >
-          <motion.div variants={childEnter} className="mx-auto max-w-3xl text-center">
+          <motion.div
+            variants={childEnter}
+            className="mx-auto max-w-3xl text-center"
+          >
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200/60 bg-white/70 px-3 py-1 text-xs text-emerald-700 shadow-sm backdrop-blur">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
               Production starter for teams that ship
             </span>
             <h1 className="mt-4 bg-gradient-to-b from-gray-800 to-gray-600 bg-clip-text text-4xl font-semibold leading-tight text-transparent sm:text-6xl">
-              Build and launch SaaS in hours, not weeks.
+              Build and launch SaaS in{" "}
+              <PointerHighlight
+                rectangleClassName="bg-emerald-100 border-emerald-300"
+                pointerClassName="text-emerald-500"
+              >
+                <span className="relative z-10 text-gray-800 font-semibold">
+                  hours, not weeks
+                </span>
+              </PointerHighlight>
+              .
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-balance text-base leading-relaxed text-gray-600 sm:text-lg">
               Opinionated, production-ready stack with Next.js, Convex, Clerk,
@@ -154,20 +154,22 @@ export default function Page() {
           {/* Logos */}
           <motion.div
             variants={childEnter}
-            className="mt-10 flex flex-wrap items-center justify-center gap-5 opacity-80"
+            className="mt-10 flex flex-wrap items-center justify-center gap-8 opacity-80"
             aria-label="Tech stack"
           >
-            {[Nextjs, Convex, Clerk, Sentry, Tailwind, Typescript, FramerMotion].map(
-              (Logo, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -2, scale: 1.05 }}
-                  className="h-6 w-6 transition-opacity hover:opacity-100 [&>svg]:h-full [&>svg]:w-full"
-                >
-                  <Logo />
-                </motion.div>
-              ),
-            )}
+            {[Nextjs, Convex, Clerk, Sentry].map((Logo, i) => (
+              <motion.div
+                key={i}
+                whileHover={{
+                  y: -4,
+                  scale: 1.05,
+                  transition: { type: "spring", stiffness: 400, damping: 17 },
+                }}
+                className="size-28 cursor-pointer transition-opacity duration-200 hover:opacity-100 [&>svg]:h-full [&>svg]:w-full [&>svg]:object-contain"
+              >
+                <Logo />
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
       </section>
@@ -181,7 +183,10 @@ export default function Page() {
           viewport={{ once: true, amount: 0.2 }}
           className="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20"
         >
-          <motion.div variants={childEnter} className="mx-auto mb-10 max-w-2xl text-center">
+          <motion.div
+            variants={childEnter}
+            className="mx-auto mb-10 max-w-2xl text-center"
+          >
             <h2 className="text-3xl font-semibold text-gray-800 sm:text-4xl">
               Everything you need to launch
             </h2>
@@ -191,200 +196,157 @@ export default function Page() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 title: "Auth & Users",
                 desc: "Email magic links, OAuth providers, sessions, and RBAC patterns pre-wired.",
-                dot: "bg-emerald-500",
+                icon: (
+                  <svg
+                    className="h-3 w-3 text-emerald-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                ),
+                gradient: "from-emerald-400 to-teal-500",
               },
               {
                 title: "Data & Realtime",
                 desc: "Convex-backed data with optimistic UI and serverless performance.",
-                dot: "bg-teal-500",
+                icon: (
+                  <svg
+                    className="h-3 w-3 text-teal-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
+                    />
+                  </svg>
+                ),
+                gradient: "from-teal-400 to-cyan-500",
               },
               {
                 title: "Errors & Observability",
                 desc: "Sentry integrated for tracing, alerts, and zero-config source maps.",
-                dot: "bg-sky-500",
+                icon: (
+                  <svg
+                    className="h-3 w-3 text-sky-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
+                  </svg>
+                ),
+                gradient: "from-sky-400 to-blue-500",
               },
               {
                 title: "App Router + Edge",
                 desc: "Next.js App Router, streaming, and edge-ready APIs by default.",
-                dot: "bg-cyan-500",
+                icon: (
+                  <svg
+                    className="h-3 w-3 text-cyan-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                ),
+                gradient: "from-cyan-400 to-sky-500",
               },
               {
                 title: "Type-safe Everywhere",
                 desc: "End-to-end TypeScript with strict configs and shared types.",
-                dot: "bg-blue-500",
+                icon: (
+                  <svg
+                    className="h-3 w-3 text-blue-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                ),
+                gradient: "from-blue-400 to-indigo-500",
               },
               {
                 title: "Deploy in 1 click",
                 desc: "CI-friendly hooks and environment templates for fast, reproducible deploys.",
-                dot: "bg-indigo-500",
+                icon: (
+                  <svg
+                    className="h-3 w-3 text-indigo-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"
+                    />
+                  </svg>
+                ),
+                gradient: "from-indigo-400 to-purple-500",
               },
             ].map((f, i) => (
               <motion.div
                 variants={childEnter}
-                whileHover={{ y: -3 }}
                 key={f.title}
-                className="group rounded-2xl border border-white/70 bg-white/70 p-6 shadow-sm backdrop-blur transition-shadow hover:shadow-md"
+                className="group relative w-full max-w-md mx-auto"
+                whileHover={{ y: -5 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <div className="flex items-center gap-3">
-                  <span className={`inline-block h-2 w-2 rounded-full ${f.dot}`} />
-                  <h3 className="text-lg font-medium text-gray-800">
+                <div
+                  className={`absolute inset-0 h-full w-full scale-[0.80] transform rounded-2xl bg-gradient-to-r ${f.gradient} blur-3xl opacity-25 transition-opacity duration-300 group-hover:opacity-40`}
+                />
+                <div className="absolute inset-0 h-full w-full scale-[0.80] transform rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 blur-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-20" />
+                <div className="relative flex h-full flex-col items-start justify-end overflow-hidden rounded-2xl border border-white/70 bg-gradient-to-br from-white/40 to-white/60 px-6 py-8 shadow-xl backdrop-blur-md transition-all duration-300 group-hover:border-emerald-200/60 group-hover:shadow-2xl group-hover:from-white/50 group-hover:to-emerald-50/70">
+                  <div className="mb-4 flex h-6 w-6 items-center justify-center rounded-full border border-gray-300/60 bg-white/80">
+                    {f.icon}
+                  </div>
+
+                  <h3 className="relative z-50 mb-3 text-xl font-semibold text-gray-800">
                     {f.title}
                   </h3>
+
+                  <p className="relative z-50 mb-4 text-sm leading-relaxed text-gray-600">
+                    {f.desc}
+                  </p>
+
+                  {/* Meteor effect */}
+                  <Meteors number={10} />
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                  {f.desc}
-                </p>
               </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Problem / Solution */}
-      <section id="problem" className="relative z-10">
-        <motion.div
-          variants={parentEnter}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20"
-        >
-          <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2">
-            <motion.div variants={childEnter}>
-              <h2 className="text-3xl font-semibold text-gray-800 sm:text-4xl">
-                The problem
-              </h2>
-              <p className="mt-3 text-gray-600">
-                Most SaaS starters make you assemble auth, data, errors, and
-                deploy from scratch. You end up debugging plumbing for weeks
-                before shipping value to users.
-              </p>
-              <ul className="mt-5 space-y-3 text-sm text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500" />
-                  OAuth, sessions, and RBAC edge cases drain time.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500" />
-                  Data layer choices snowball into complex boilerplate.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500" />
-                  Errors in prod without observability = guessing.
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div variants={childEnter}>
-              <h2 className="text-3xl font-semibold text-gray-800 sm:text-4xl">
-                The solution
-              </h2>
-              <p className="mt-3 text-gray-600">
-                A cohesive starter that handles the hard parts: auth, realtime
-                data, error tracking, and deployment. You get clean patterns,
-                type safety, and production defaults from day one.
-              </p>
-              <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {[
-                  "Pre-wired auth & users",
-                  "Convex data + realtime",
-                  "Sentry errors & tracing",
-                  "TypeScript-first DX",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-2 rounded-xl border border-white/70 bg-white/70 px-4 py-3 text-sm text-gray-700 shadow-sm backdrop-blur"
-                  >
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <a
-                id="get-started"
-                href="#"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 px-5 py-2.5 text-sm font-medium text-white shadow-lg transition hover:shadow-xl"
-              >
-                Start building
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M5 12h14M13 5l7 7-7 7"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </a>
-            </motion.div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="relative z-10 border-t border-white/60">
-        <motion.div
-          variants={parentEnter}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto max-w-4xl px-6 py-14 sm:px-8 sm:py-20"
-        >
-          <motion.h2
-            variants={childEnter}
-            className="text-center text-3xl font-semibold text-gray-800 sm:text-4xl"
-          >
-            Frequently asked questions
-          </motion.h2>
-          <div className="mt-8 divide-y divide-white/70 rounded-2xl border border-white/70 bg-white/70 shadow-sm backdrop-blur">
-            {[
-              {
-                q: "What’s included out of the box?",
-                a: "Next.js App Router, Convex for data and realtime, Clerk for auth (email magic links + OAuth), Sentry for error tracking, example API routes, RBAC patterns, TypeScript setup, and deploy hooks.",
-              },
-              {
-                q: "Is it production-ready?",
-                a: "Yes. The stack is configured with sensible defaults, environment templates, and observability. You can deploy on day one and evolve safely.",
-              },
-              {
-                q: "How customizable is it?",
-                a: "Everything is modular. Swap providers, adjust data models, and re-theme with Tailwind. Patterns are opinionated but not restrictive.",
-              },
-              {
-                q: "Does it support edge and streaming?",
-                a: "Yes. It uses Next.js App Router with edge-ready handlers where appropriate, plus streaming and progressive rendering patterns.",
-              },
-            ].map((item, idx) => (
-              <motion.details
-                key={idx}
-                variants={fadeIn as any}
-                className="group px-5 py-4 open:bg-white/90 open:shadow-sm"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-gray-800">
-                  <span className="text-sm font-medium sm:text-base">
-                    {item.q}
-                  </span>
-                  <svg
-                    className="h-4 w-4 shrink-0 text-gray-500 transition-transform group-open:rotate-45"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      d="M12 5v14M5 12h14"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </summary>
-                <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                  {item.a}
-                </p>
-              </motion.details>
             ))}
           </div>
         </motion.div>
