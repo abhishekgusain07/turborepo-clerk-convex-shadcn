@@ -11,7 +11,6 @@ export default function Page() {
     <>
       <div className="flex items-center  flex-col justify-center h-screen">
         <p> apps/web </p>
-        {JSON.stringify(users)}
         <OrganizationSwitcher hidePersonal={true} />
         <Button onClick={() => addUser()}>addUser</Button>
         <Button onClick={() => removeUsers()}>removeUsers</Button>
