@@ -1,10 +1,9 @@
 "use client";
 import { api } from "@workspace/backend/_generated/api";
-import { useMutation, useQuery } from "convex/react";
+import { useMutation } from "convex/react";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Button } from "@workspace/ui/components/button";
 export default function Page() {
-  const users = useQuery(api.users.getmany);
   const addUser = useMutation(api.users.addUser);
   const removeUsers = useMutation(api.users.removeUsers);
   return (

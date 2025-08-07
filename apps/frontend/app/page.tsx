@@ -357,7 +357,7 @@ export default function Page() {
         </motion.div>
       </section>
       <ComparisonShowcase />
-      
+
       <Pricing parentEnter={parentEnter} childEnter={childEnter} />
       <FAQ parentEnter={parentEnter} childEnter={childEnter} />
       {/* <TextReveal className="max-w-[600px] mx-auto leading-[1.2] text-center">

@@ -12,31 +12,38 @@ interface FaqItem {
 const faqContent: FaqItem[] = [
   {
     question: "Who is SaaS Forge for?",
-    answer: "SaaS Forge is for developers, startup founders, and teams who want to launch production-ready SaaS applications quickly. It's perfect for those who want a battle-tested tech stack with Next.js, Convex, Clerk, and Sentry pre-configured and integrated, saving weeks of setup time.",
+    answer:
+      "SaaS Forge is for developers, startup founders, and teams who want to launch production-ready SaaS applications quickly. It's perfect for those who want a battle-tested tech stack with Next.js, Convex, Clerk, and Sentry pre-configured and integrated, saving weeks of setup time.",
   },
   {
     question: "How much does it cost?",
-    answer: "SaaS Forge starter is completely free and open source under the MIT license. You only pay for the individual services you choose to use (like Convex, Clerk, or Sentry). Each service has generous free tiers, so you can start building without any upfront costs and scale as you grow.",
+    answer:
+      "SaaS Forge starter is completely free and open source under the MIT license. You only pay for the individual services you choose to use (like Convex, Clerk, or Sentry). Each service has generous free tiers, so you can start building without any upfront costs and scale as you grow.",
   },
   {
     question: "Which platforms does SaaS Forge support?",
-    answer: "SaaS Forge is built with Next.js and supports deployment on Vercel, Netlify, AWS, Google Cloud, and any platform that supports Node.js applications. It works on all modern browsers and is fully responsive for mobile, tablet, and desktop experiences.",
+    answer:
+      "SaaS Forge is built with Next.js and supports deployment on Vercel, Netlify, AWS, Google Cloud, and any platform that supports Node.js applications. It works on all modern browsers and is fully responsive for mobile, tablet, and desktop experiences.",
   },
   {
     question: "What makes SaaS Forge different from other Next.js starters?",
-    answer: "Unlike basic templates, SaaS Forge provides a complete, production-ready ecosystem. It includes real-time data with Convex, robust authentication with Clerk, error tracking with Sentry, and proper patterns for RBAC, API routes, and deployment. Everything is pre-integrated and tested together.",
+    answer:
+      "Unlike basic templates, SaaS Forge provides a complete, production-ready ecosystem. It includes real-time data with Convex, robust authentication with Clerk, error tracking with Sentry, and proper patterns for RBAC, API routes, and deployment. Everything is pre-integrated and tested together.",
   },
   {
     question: "Can I customize and extend SaaS Forge?",
-    answer: "Absolutely! SaaS Forge is open source and designed to be your foundation, not a restriction. Modify components, swap out services, customize styling, add features, or restructure as needed. It's your codebase to own and evolve.",
+    answer:
+      "Absolutely! SaaS Forge is open source and designed to be your foundation, not a restriction. Modify components, swap out services, customize styling, add features, or restructure as needed. It's your codebase to own and evolve.",
   },
   {
     question: "What kind of support is available?",
-    answer: "SaaS Forge includes comprehensive documentation, code comments, and example implementations. The open source community provides support through GitHub discussions. We also offer consulting and priority support for teams who need hands-on guidance.",
+    answer:
+      "SaaS Forge includes comprehensive documentation, code comments, and example implementations. The open source community provides support through GitHub discussions. We also offer consulting and priority support for teams who need hands-on guidance.",
   },
   {
     question: "Is SaaS Forge production-ready?",
-    answer: "Yes! SaaS Forge is built with production-grade patterns, proper error handling, observability, security best practices, and deployment configurations. The stack (Next.js, Convex, Clerk, Sentry) powers many successful SaaS applications at scale.",
+    answer:
+      "Yes! SaaS Forge is built with production-grade patterns, proper error handling, observability, security best practices, and deployment configurations. The stack (Next.js, Convex, Clerk, Sentry) powers many successful SaaS applications at scale.",
   },
 ];
 
@@ -84,7 +91,8 @@ export function FAQ({
             Frequently asked questions
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg">
-            Got questions? We've got answers. If you can't find what you're looking for, feel free to reach out.
+            Got questions? We've got answers. If you can't find what you're
+            looking for, feel free to reach out.
           </p>
         </motion.div>
 
@@ -114,10 +122,12 @@ export function FAQ({
                 >
                   {item.question}
                 </p>
-                <div className={clsx(
-                  "flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-colors",
-                  openIndex === index ? "bg-white/20" : "bg-emerald-100/50"
-                )}>
+                <div
+                  className={clsx(
+                    "flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-colors",
+                    openIndex === index ? "bg-white/20" : "bg-emerald-100/50"
+                  )}
+                >
                   {openIndex === index ? (
                     <svg
                       className="w-4 h-4 text-white"
@@ -126,7 +136,11 @@ export function FAQ({
                       stroke="currentColor"
                       strokeWidth={2}
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M18 12H6"
+                      />
                     </svg>
                   ) : (
                     <svg
@@ -136,7 +150,11 @@ export function FAQ({
                       stroke="currentColor"
                       strokeWidth={2}
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                      />
                     </svg>
                   )}
                 </div>
@@ -165,16 +183,14 @@ export function FAQ({
         </div>
 
         {/* CTA */}
-        <motion.div
-          variants={childEnter}
-          className="mt-16 text-center"
-        >
+        <motion.div variants={childEnter} className="mt-16 text-center">
           <div className="rounded-2xl border border-white/70 bg-gradient-to-br from-white/50 to-white/70 p-8 shadow-xl backdrop-blur-xl">
             <h3 className="text-xl font-semibold text-gray-800 sm:text-2xl">
               Still have questions?
             </h3>
             <p className="mt-2 text-gray-600">
-              Can't find the answer you're looking for? Our community is here to help.
+              Can't find the answer you're looking for? Our community is here to
+              help.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <motion.a
@@ -190,7 +206,11 @@ export function FAQ({
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
-                  <path fillRule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clipRule="evenodd" />
+                  <path
+                    fillRule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Join discussions
               </motion.a>

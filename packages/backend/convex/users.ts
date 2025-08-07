@@ -18,8 +18,7 @@ export const getmany = query({
 });
 
 export const addUser = mutation({
-  args: {
-  },
+  args: {},
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (identity == null) {

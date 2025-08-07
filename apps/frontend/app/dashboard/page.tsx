@@ -1,7 +1,11 @@
 "use client";
 
 import { useMutation, useQuery } from "convex/react";
-import { OrganizationSwitcher, useOrganization, UserButton } from "@clerk/nextjs";
+import {
+  OrganizationSwitcher,
+  useOrganization,
+  UserButton,
+} from "@clerk/nextjs";
 import { Button } from "@workspace/ui/components/button";
 import { api } from "@workspace/backend/_generated/api";
 import { useState } from "react";
@@ -16,7 +20,9 @@ export default function Page() {
 
   const filtered =
     (users ?? []).filter((u: any) =>
-      `${u.name ?? ""} ${u.email ?? ""}`.toLowerCase().includes(search.toLowerCase())
+      `${u.name ?? ""} ${u.email ?? ""}`
+        .toLowerCase()
+        .includes(search.toLowerCase())
     ) || [];
 
   return (
@@ -46,7 +52,7 @@ export default function Page() {
                 { label: "Users", icon: UsersIcon },
                 { label: "Projects", icon: GridIcon },
                 { label: "Settings", icon: SettingsIcon },
-              ].map((item) => (
+              ].map(item => (
                 <a
                   key={item.label}
                   className="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-white/70 hover:shadow-sm"
@@ -91,7 +97,7 @@ export default function Page() {
               <div className="relative w-full max-w-xl">
                 <input
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={e => setSearch(e.target.value)}
                   placeholder="Search users..."
                   className="w-full rounded-xl border border-white/70 bg-white/70 px-10 py-2 text-sm text-gray-800 placeholder:text-gray-400 shadow-sm outline-none ring-0 focus:border-emerald-200"
                 />
@@ -171,7 +177,8 @@ export default function Page() {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">Users</h3>
                   <p className="text-sm text-gray-600">
-                    Live list powered by Convex. Use the actions to add or clear.
+                    Live list powered by Convex. Use the actions to add or
+                    clear.
                   </p>
                 </div>
                 <div className="hidden items-center gap-2 sm:flex">
@@ -224,8 +231,8 @@ export default function Page() {
 
           {/* Footer */}
           <footer className="mx-auto w-full max-w-7xl px-4 py-6 text-center text-xs text-gray-500">
-            Crafted with an emerald/teal/sky palette. All data is mock except Convex
-            users list.
+            Crafted with an emerald/teal/sky palette. All data is mock except
+            Convex users list.
           </footer>
         </div>
       </div>
@@ -269,10 +276,11 @@ function Avatar({ seed }: { seed: string }) {
     "bg-indigo-200",
   ][hash % 4];
   const initials =
-    seed?.split?.("@")?.[0]
+    seed
+      ?.split?.("@")?.[0]
       ?.split(/[.-_]/)
       ?.slice(0, 2)
-      ?.map((s) => s?.[0]?.toUpperCase() || "")
+      ?.map(s => s?.[0]?.toUpperCase() || "")
       ?.join("") || "U";
 
   return (

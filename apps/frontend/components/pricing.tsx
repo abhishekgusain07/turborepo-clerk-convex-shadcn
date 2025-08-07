@@ -27,7 +27,11 @@ const tiers: Tier[] = [
     price: "$50",
     sub: "For apps between $3K – $10K MRR",
     cta: { label: "Get started", href: "/sign-in", variant: "neutral" },
-    features: ["Up to $10K MRR processed", "Unlimited projects", "Priority support"],
+    features: [
+      "Up to $10K MRR processed",
+      "Unlimited projects",
+      "Priority support",
+    ],
     accent: "from-teal-500 to-sky-500",
   },
   {
@@ -35,7 +39,11 @@ const tiers: Tier[] = [
     price: "$375",
     sub: "Seed to Series A: $10K – $40K MRR",
     cta: { label: "Let’s chat", href: "/contact", variant: "neutral" },
-    features: ["Up to $40K MRR processed", "Unlimited projects", "Slack support"],
+    features: [
+      "Up to $40K MRR processed",
+      "Unlimited projects",
+      "Slack support",
+    ],
     accent: "from-sky-500 to-indigo-500",
   },
 ];
@@ -134,7 +142,7 @@ export function Pricing({
 
                 {/* Features */}
                 <ul className="mt-6 space-y-3 text-sm text-gray-700">
-                  {tier.features.map((f) => (
+                  {tier.features.map(f => (
                     <li key={f} className="flex items-center gap-2">
                       <span className="flex h-5 w-5 items-center justify-center rounded-full border border-gray-300/60 bg-white/80">
                         <svg

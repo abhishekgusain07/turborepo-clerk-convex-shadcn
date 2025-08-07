@@ -11,7 +11,8 @@ export const testimonials = [
     name: "Marcus Rodriguez",
     handle: "StartupLab",
     image: "/testimonials/marcus_rodriguez.jpg",
-    content: "The TypeScript integration is flawless. Finally, a starter that doesn't compromise on type safety while being incredibly fast to set up.",
+    content:
+      "The TypeScript integration is flawless. Finally, a starter that doesn't compromise on type safety while being incredibly fast to set up.",
     url: "#",
   },
   {
@@ -26,7 +27,8 @@ export const testimonials = [
     name: "David Kim",
     handle: "@davidkim_builds",
     image: "/testimonials/david_kim.jpg",
-    content: "Best SaaS starter I've ever used. Clean code, great documentation, and it scales beautifully.",
+    content:
+      "Best SaaS starter I've ever used. Clean code, great documentation, and it scales beautifully.",
     url: "#",
   },
   {
@@ -41,21 +43,24 @@ export const testimonials = [
     name: "Alex Johnson",
     handle: "@alexjohnson",
     image: "/testimonials/alex_johnson.jpg",
-    content: "Deployed our SaaS in under an hour. The authentication flows are polished and the data layer is robust.",
+    content:
+      "Deployed our SaaS in under an hour. The authentication flows are polished and the data layer is robust.",
     url: "#",
   },
   {
     name: "Priya Patel",
     handle: "InnovateTech",
     image: "/testimonials/priya_patel.jpg",
-    content: "Finally, a starter that doesn't require weeks of setup. SaaS Forge is opinionated in all the right ways.",
+    content:
+      "Finally, a starter that doesn't require weeks of setup. SaaS Forge is opinionated in all the right ways.",
     url: "#",
   },
   {
     name: "Tom Wilson",
     handle: "@tomwilson_dev",
     image: "/testimonials/tom_wilson.jpg",
-    content: "The edge-ready architecture and App Router setup is exactly what modern SaaS needs. Incredibly well thought out.",
+    content:
+      "The edge-ready architecture and App Router setup is exactly what modern SaaS needs. Incredibly well thought out.",
     url: "#",
   },
   {
@@ -70,7 +75,8 @@ export const testimonials = [
     name: "Jason Lee",
     handle: "@jasonlee_code",
     image: "/testimonials/jason_lee.jpg",
-    content: "This is how all SaaS starters should be built. Clean, fast, and production-ready. No more reinventing the wheel.",
+    content:
+      "This is how all SaaS starters should be built. Clean, fast, and production-ready. No more reinventing the wheel.",
     url: "#",
   },
   {
@@ -85,7 +91,8 @@ export const testimonials = [
     name: "Ryan Cooper",
     handle: "@ryancooper_dev",
     image: "/testimonials/ryan_cooper.jpg",
-    content: "Been using SaaS Forge for 6 months now. It scales beautifully and the patterns are spot-on for enterprise needs.",
+    content:
+      "Been using SaaS Forge for 6 months now. It scales beautifully and the patterns are spot-on for enterprise needs.",
     url: "#",
   },
 ] as const;

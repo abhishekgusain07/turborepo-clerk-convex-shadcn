@@ -6,7 +6,8 @@
     "setup": "convex dev --until-success"
   },
   "exports": {
-    "./convex": "./convex/*.ts"
+    "./convex": "./convex/*.ts",
+    "./_generated/api": "./convex/_generated/api.js"
   },
   "devDependencies": {
     "@types/node": "^20",

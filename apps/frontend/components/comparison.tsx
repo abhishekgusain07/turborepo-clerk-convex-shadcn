@@ -141,7 +141,7 @@ export function ComparisonShowcase() {
               subtitle="What’s problematic elsewhere."
               iconTint="text-sky-500"
             />
-            {data.map((item) => (
+            {data.map(item => (
               <motion.div
                 key={item.id + "-lacking"}
                 variants={variants.item}
@@ -152,7 +152,10 @@ export function ComparisonShowcase() {
                   {item.label}
                 </h3>
                 <p className="mt-1 text-sm text-gray-700">{item.lacking}</p>
-                <Meter gradient={item.gradient} width={meterWidth(item.severity)} />
+                <Meter
+                  gradient={item.gradient}
+                  width={meterWidth(item.severity)}
+                />
               </motion.div>
             ))}
           </motion.div>
@@ -170,7 +173,7 @@ export function ComparisonShowcase() {
               subtitle="What you get by default."
               iconTint="text-emerald-600"
             />
-            {data.map((item) => (
+            {data.map(item => (
               <motion.div
                 key={item.id + "-solution"}
                 variants={variants.item}
@@ -181,7 +184,10 @@ export function ComparisonShowcase() {
                   {item.label}
                 </h3>
                 <p className="mt-1 text-sm text-emerald-900">{item.solution}</p>
-                <Meter gradient={item.gradient} width={meterWidth(item.severity)} />
+                <Meter
+                  gradient={item.gradient}
+                  width={meterWidth(item.severity)}
+                />
                 <Glow gradient={item.gradient} />
               </motion.div>
             ))}
@@ -273,7 +279,9 @@ function Chip({
           : "border-emerald-300 text-emerald-700"
       }`}
     >
-      <span className={`h-1.5 w-1.5 rounded-full bg-gradient-to-r ${gradient}`} />
+      <span
+        className={`h-1.5 w-1.5 rounded-full bg-gradient-to-r ${gradient}`}
+      />
       {label}
     </span>
   );
@@ -282,7 +290,10 @@ function Chip({
 function Meter({ gradient, width }: { gradient: string; width: string }) {
   return (
     <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-gray-200/70">
-      <div className={`h-full bg-gradient-to-r ${gradient}`} style={{ width }} />
+      <div
+        className={`h-full bg-gradient-to-r ${gradient}`}
+        style={{ width }}
+      />
     </div>
   );
 }
