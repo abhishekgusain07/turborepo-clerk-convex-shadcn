@@ -1,3 +1,4 @@
+import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
 export const getmany = query({
@@ -17,7 +18,8 @@ export const getmany = query({
 });
 
 export const addUser = mutation({
-  args: {},
+  args: {
+  },
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (identity == null) {

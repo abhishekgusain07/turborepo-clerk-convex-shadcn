@@ -13,6 +13,7 @@ import { Pricing } from "@/components/pricing";
 import { ComparisonShowcase } from "@/components/comparison";
 import { FAQ } from "@/components/faq";
 import { Testimonials } from "@/components/ui/Testimonials";
+import { TextReveal } from "@/components/ui/textreveal";
 
 export default function Page() {
   const prefersReducedMotion = useReducedMotion();
@@ -357,22 +358,11 @@ export default function Page() {
       </section>
       <ComparisonShowcase />
       
-      {/* Testimonials */}
-      <section className="relative z-10 border-t border-white/60">
-        <motion.div
-          variants={parentEnter}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20"
-        >
-          <Testimonials />
-        </motion.div>
-      </section>
-      
       <Pricing parentEnter={parentEnter} childEnter={childEnter} />
       <FAQ parentEnter={parentEnter} childEnter={childEnter} />
-
+      {/* <TextReveal className="max-w-[600px] mx-auto leading-[1.2] text-center">
+        Build reveal
+      </TextReveal> */}
       {/* Footer */}
       <footer className="relative z-10 border-t border-white/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-10 sm:px-8 sm:flex-row">
