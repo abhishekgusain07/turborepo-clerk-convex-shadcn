@@ -107,18 +107,19 @@ export default function Page() {
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
               Production starter for teams that ship
             </span>
-            <h1 className="mt-4 bg-gradient-to-b from-gray-800 to-gray-600 bg-clip-text text-4xl font-semibold leading-tight text-transparent sm:text-6xl">
+            <h1 className="mt-4 bg-gradient-to-b from-gray-800 to-gray-600 bg-clip-text text-4xl font-semibold leading-tight text-transparent sm:text-6xl text-center">
               Build and launch SaaS in{" "}
               <PointerHighlight
-                rectangleClassName="bg-emerald-100 border-emerald-300"
+                rectangleClassName="inline-block bg-emerald-100 border-emerald-300"
                 pointerClassName="text-emerald-500"
               >
-                <span className="relative z-10 text-gray-800 font-semibold">
+                <span className="relative z-10 text-gray-800 font-semibold inline-block align-middle">
                   hours, not weeks
                 </span>
               </PointerHighlight>
               .
             </h1>
+
             <p className="mx-auto mt-4 max-w-2xl text-balance text-base leading-relaxed text-gray-600 sm:text-lg">
               Opinionated, production-ready stack with Next.js, Convex, Clerk,
               and Sentry—wired with auth, data, and error handling so you focus
